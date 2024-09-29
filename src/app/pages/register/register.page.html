@@ -3,12 +3,32 @@
     <form [formGroup]="form" (ngSubmit)="doRegister()">
       <ion-row>
         <ion-col>
-          <app-input [control]="email" label="Email" type="email" placeholder="jane@doe.com"></app-input>
+          <app-input [control]="name" label="Nombre:" placeholder="Tu nombre"></app-input>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <app-input [control]="password" label="Password" type="password" placeholder="**********"></app-input>
+          <app-input [control]="lastName" label="Apellido:" placeholder="Tu apellido"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input [control]="email" label="Email:" type="email" placeholder="jane@doe.com"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input [control]="password" label="Contraseña:" type="password" placeholder="**********"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input [control]="age" label="Edad:" type="number" placeholder="Tu edad"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input [control]="phoneNumber" label="Número de teléfono:" placeholder="Tu número de teléfono"></app-input>
         </ion-col>
       </ion-row>
       <ion-row>
