@@ -3,12 +3,12 @@
     <form [formGroup]="form" (ngSubmit)="doRegister()">
       <ion-row>
         <ion-col>
-          <app-input [control]="name" label="Nombre:" placeholder="Tu nombre"></app-input>
+          <app-input [control]="name" label="Name:" placeholder="Your name"></app-input>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <app-input [control]="lastName" label="Apellido:" placeholder="Tu apellido"></app-input>
+          <app-input [control]="lastName" label="Last Name:" placeholder="Your last name"></app-input>
         </ion-col>
       </ion-row>
       <ion-row>
@@ -18,22 +18,22 @@
       </ion-row>
       <ion-row>
         <ion-col>
-          <app-input [control]="password" label="Contraseña:" type="password" placeholder="**********"></app-input>
+          <app-input [control]="password" label="Password:" type="password" placeholder="**********"></app-input>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <app-input [control]="age" label="Edad:" type="number" placeholder="Tu edad"></app-input>
+          <app-input [control]="age" label="Age:" type="number" placeholder="Your age"></app-input>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <app-input [control]="phoneNumber" label="Número de teléfono:" placeholder="Tu número de teléfono"></app-input>
+          <app-input [control]="phoneNumber" label="Phone Number:" placeholder="Your phone number"></app-input>
         </ion-col>
       </ion-row>
       <ion-row>
         <ion-col>
-          <app-button [disabled]="form.invalid" label="Registrar" type="submit"></app-button>
+          <app-button [disabled]="form.invalid" label="Register" type="submit"></app-button>
         </ion-col>
       </ion-row>
     </form>
