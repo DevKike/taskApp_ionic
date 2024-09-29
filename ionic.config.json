@@ -1,0 +1,7 @@
+{
+  "name": "taskApp_FireBase",
+  "integrations": {
+    "capacitor": {}
+  },
+  "type": "angular"
+}
