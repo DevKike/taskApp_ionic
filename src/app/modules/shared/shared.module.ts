@@ -4,6 +4,8 @@ import { CommonModule } from '@angular/common';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { IonicModule } from '@ionic/angular';
 import { InputComponent } from './components/input/input.component';
+import { ButtonComponent } from './components/button/button.component';
+import { CardComponent } from './components/card/card.component';
 
 const MODULES = [
   CommonModule,
@@ -13,7 +15,9 @@ const MODULES = [
 ];
 
 const COMPONENTS = [
-  InputComponent
+  InputComponent,
+  ButtonComponent,
+  CardComponent
 ];
 
 
