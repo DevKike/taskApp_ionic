@@ -1,0 +1,24 @@
+<ion-header [translucent]="true">
+</ion-header>
+
+<ion-content [fullscreen]="true">
+  <app-card title="Login" content="Login for you">
+  <form [formGroup]="form" (ngSubmit)="doLogin()">
+    <ion-row>
+      <ion-col>
+        <app-input [control]="email" label="Email:" type="email" placeholder="jane@doe.com"></app-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <app-input [control]="password" label="Password:" type="password" placeholder="**********"></app-input>
+      </ion-col>
+    </ion-row>
+    <ion-row>
+      <ion-col>
+        <app-button [disabled]="form.invalid" label="login" type="submit"></app-button>
+      </ion-col>
+    </ion-row>
+  </form>
+</app-card>
+</ion-content>
