@@ -1,13 +1,15 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from 'src/app/interfaces/IUser';
+import { AuthService } from 'src/app/modules/shared/auth/auth.service';
+import { FirebaseService } from 'src/app/modules/shared/firebase/firebase.service';
 
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
   styleUrls: ['./register.page.scss'],
 })
-export class RegisterPage  {
+export class RegisterPage {
   public email!: FormControl;
   public password!: FormControl;
   public name!: FormControl;
@@ -16,17 +18,8 @@ export class RegisterPage  {
   public phoneNumber!: FormControl;
   public form!: FormGroup;
 
-  constructor() {
+  constructor(private readonly _authSrv: AuthService, private readonly _firebaseSrv: FirebaseService) {
     this.initForm();
-  }
-
-  doRegister() {
-    if (this.form.valid) {
-      const user: IUser = this.form.value;
-      console.log('Registro exitoso:', user);
-    } else {
-      console.log('Formulario inválido');
-    }
   }
 
   private initForm() {
@@ -45,5 +38,24 @@ export class RegisterPage  {
       age: this.age,
       phone_number: this.phoneNumber,
     });
+  }
+
+  protected async doRegister() {
+    try {
+      const { email, password }: IUser = this.form.value;
+      const copyUser = { ...this.form.value };
+
+      const res = await this._authSrv.register(email, password);
+
+      const uid = res.user?.uid || '';
+
+      const user = { uid, ...copyUser };
+
+      delete user.email;
+      delete user.password;
+      await this._firebaseSrv.create('user', user);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
