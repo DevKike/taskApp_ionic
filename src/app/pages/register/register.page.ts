@@ -3,6 +3,7 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from 'src/app/interfaces/IUser';
 import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore/firestore.service';
+import { StorageService } from 'src/app/modules/shared/services/storage/storage.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +19,11 @@ export class RegisterPage {
   public phoneNumber!: FormControl;
   public form!: FormGroup;
 
-  constructor(private readonly _authSrv: AuthService, private readonly _firestoreSrv: FirestoreService) {
+  constructor(
+    private readonly _authSrv: AuthService,
+    private readonly _firestoreSrv: FirestoreService,
+    private readonly _storageSrv: StorageService
+  ) {
     this.initForm();
   }
 
@@ -58,4 +63,10 @@ export class RegisterPage {
       console.error(error);
     }
   }
+
+/*   protected async uploadImage(event: any) {
+    const file = event.target.files[0];
+    const filePath = `users/${file.name}`;
+    await this._storageSrv.upload(filePath, file);
+  } */
 }
