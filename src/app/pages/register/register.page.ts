@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { IUser } from 'src/app/interfaces/IUser';
-import { AuthService } from 'src/app/modules/shared/auth/auth.service';
-import { FirebaseService } from 'src/app/modules/shared/firebase/firebase.service';
+import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
+import { FirestoreService } from 'src/app/modules/shared/services/firestore/firestore.service';
 
 @Component({
   selector: 'app-register',
@@ -18,7 +18,7 @@ export class RegisterPage {
   public phoneNumber!: FormControl;
   public form!: FormGroup;
 
-  constructor(private readonly _authSrv: AuthService, private readonly _firebaseSrv: FirebaseService) {
+  constructor(private readonly _authSrv: AuthService, private readonly _firestoreSrv: FirestoreService) {
     this.initForm();
   }
 
@@ -53,7 +53,7 @@ export class RegisterPage {
 
       delete user.email;
       delete user.password;
-      await this._firebaseSrv.create('user', user);
+      await this._firestoreSrv.create('user', user);
     } catch (error) {
       console.error(error);
     }

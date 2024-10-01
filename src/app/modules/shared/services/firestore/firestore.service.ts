@@ -4,7 +4,7 @@ import { AngularFirestore } from '@angular/fire/compat/firestore';
 @Injectable({
   providedIn: 'root',
 })
-export class FirebaseService {
+export class FirestoreService {
   constructor(private readonly _ngFirestore: AngularFirestore) {}
 
   public async create(collection: string, data: any) {
