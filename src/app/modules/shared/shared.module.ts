@@ -7,12 +7,13 @@ import { InputComponent } from './components/input/input.component';
 import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { FirestoreService } from './services/firestore/firestore.service';
+import { StorageService } from './services/storage/storage.service';
 
 const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule];
 
 const COMPONENTS = [InputComponent, ButtonComponent, CardComponent];
 
-const PROVIDERS = [FirestoreService];
+const PROVIDERS = [FirestoreService, StorageService];
 
 @NgModule({
   declarations: [...COMPONENTS],
