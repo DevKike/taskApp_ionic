@@ -9,6 +9,7 @@ import { AppComponent } from './app.component';
 import { AppRoutingModule } from './app-routing.module';
 import { CoreModule } from './modules/core/core.module';
 
+
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -18,7 +19,7 @@ import { CoreModule } from './modules/core/core.module';
     ReactiveFormsModule,
     CoreModule
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
+  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy}],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
