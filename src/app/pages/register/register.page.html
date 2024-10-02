@@ -37,8 +37,9 @@
           <app-button [disabled]="form.invalid" label="Register" type="submit"></app-button>
         </ion-col>
         <ion-col>
-          <app-button label="Upload your image" expand="full" (click)="fileInput.click()">
+          <app-button label="ADD FILE" expand="full" (click)="fileInput.click()">
           </app-button>
+          
           <input type="file" #fileInput (change)="uploadImage($event)" hidden />
         </ion-col>
       </ion-row>

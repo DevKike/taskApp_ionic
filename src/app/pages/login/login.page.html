@@ -1,24 +1,30 @@
-
-
 <ion-content [fullscreen]="true">
   <app-header title="Login"></app-header>
-  <app-card title="Login" content="Login for you">
-  <form [formGroup]="form" (ngSubmit)="doLogin()">
-    <ion-row>
-      <ion-col>
-        <app-input [control]="email" label="Email:" type="email" placeholder="jane@doe.com"></app-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <app-input [control]="password" label="Password:" type="password" placeholder="**********"></app-input>
-      </ion-col>
-    </ion-row>
-    <ion-row>
-      <ion-col>
-        <app-button [disabled]="form.invalid" label="login" type="submit"></app-button>
-      </ion-col>
-    </ion-row>
-  </form>
-</app-card>
+  <div class="login-container">
+    <app-card title="">
+      <div class="divider">
+        <span>Sign in with</span>
+      </div>
+      <form [formGroup]="form" (ngSubmit)="doLogin()">
+        <ion-row>
+          <ion-col>
+            <app-input [control]="email" label="Username" type="email" placeholder="Username"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <app-input [control]="password" label="Password" type="password" placeholder="Password"></app-input>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
+            <app-button [disabled]="form.invalid" label="Sign In" type="submit"></app-button>
+          </ion-col>
+        </ion-row>
+      </form>
+      <div class="signup">
+        <p>New to Spike? <a href="register">Create an account</a></p>
+      </div>
+    </app-card>
+  </div>
 </ion-content>
