@@ -21,7 +21,7 @@ export class RegisterPage {
   public age!: FormControl;
   public phoneNumber!: FormControl;
   public form!: FormGroup;
-  public fileToUpload: any; 
+  private fileToUpload: any;
 
   constructor(
     private readonly _authSrv: AuthService,
@@ -60,8 +60,8 @@ export class RegisterPage {
       const copyUser = { ...this.form.value };
 
       const res = await this._authSrv.register(email, password);
-      const uid = res.user?.uid || '';
 
+      const uid = res.user?.uid || '';
       const user = { uid, ...copyUser };
 
       delete user.email;
@@ -70,6 +70,10 @@ export class RegisterPage {
       if (this.fileToUpload) {
         const filePath = `users/${this.fileToUpload.name}`;
         await this._storageSrv.upload(filePath, this.fileToUpload);
+        const image = await this.getImageUrl(filePath);
+
+        const userWithUrlImage = { image, ...user };
+        await this._firestoreSrv.create('user', userWithUrlImage);
       }
 
       await this._firestoreSrv.create('user', user);
@@ -88,5 +92,9 @@ export class RegisterPage {
 
   protected async uploadImage(event: any) {
     this.fileToUpload = event.target.files[0];
+  }
+
+  private async getImageUrl(filePath: string) {
+    return await this._storageSrv.getUrl(filePath);
   }
 }
