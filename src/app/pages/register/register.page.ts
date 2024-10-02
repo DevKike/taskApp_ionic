@@ -6,6 +6,7 @@ import { FirestoreService } from 'src/app/modules/shared/services/firestore/fire
 import { StorageService } from 'src/app/modules/shared/services/storage/storage.service';
 import { ToastService } from 'src/app/modules/shared/services/toast/toast.service';
 import { NavController } from '@ionic/angular';
+import { LoadingService } from 'src/app/modules/shared/services/loading/loading.service';
 @Component({
   selector: 'app-register',
   templateUrl: './register.page.html',
@@ -25,7 +26,8 @@ export class RegisterPage {
     private readonly _firestoreSrv: FirestoreService,
     private readonly _storageSrv: StorageService,
     private readonly toastSrv: ToastService,
-    private readonly navCtrl: NavController
+    private readonly navCtrl: NavController,
+    private readonly loadingSrv: LoadingService
   ) {
     this.initForm();
   }
@@ -50,7 +52,7 @@ export class RegisterPage {
 
   protected async doRegister() {
     try {
-      this.toastSrv.presentLoadingToast('Registering...');
+      this.loadingSrv.showLoading("Registering...")
 
       const { email, password }: IUser = this.form.value;
       const copyUser = { ...this.form.value };
@@ -64,7 +66,7 @@ export class RegisterPage {
       delete user.password;
       await this._firestoreSrv.create('user', user);
 
-      this.toastSrv.dismissToast();
+      this.loadingSrv.hideLoading();
       this.toastSrv.presentToast('¡Successful registration!');
       this.form.reset();
       this.navCtrl.navigateForward('/login');
@@ -77,11 +79,11 @@ export class RegisterPage {
   }
 
   protected async uploadImage(event: any) {
-    await this.toastSrv.presentLoadingToast('Uploading...');
+    this.loadingSrv.showLoading("Uploading...")
     const file = event.target.files[0];
     const filePath = `users/${file.name}`;
     await this._storageSrv.upload(filePath, file);
-    await this.toastSrv.dismissToast();
+    await this.loadingSrv.hideLoading();
     await this.toastSrv.presentToast('Successful upload!');
   }
 }

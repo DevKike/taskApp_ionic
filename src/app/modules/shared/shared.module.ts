@@ -10,11 +10,12 @@ import { FirestoreService } from './services/firestore/firestore.service';
 import { StorageService } from './services/storage/storage.service';
 import { ToastService } from './services/toast/toast.service';
 import { HeaderComponent } from './components/header/header/header.component';
+import { LoadingService } from './services/loading/loading.service';
 const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule];
 
 const COMPONENTS = [InputComponent, ButtonComponent, CardComponent, HeaderComponent];
 
-const PROVIDERS = [FirestoreService, StorageService, ToastService];
+const PROVIDERS = [FirestoreService, StorageService, ToastService, LoadingService];
 
 @NgModule({
   declarations: [...COMPONENTS],
