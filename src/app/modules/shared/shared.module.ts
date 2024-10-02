@@ -8,12 +8,13 @@ import { ButtonComponent } from './components/button/button.component';
 import { CardComponent } from './components/card/card.component';
 import { FirestoreService } from './services/firestore/firestore.service';
 import { StorageService } from './services/storage/storage.service';
-
+import { ToastService } from './services/toast/toast.service';
+import { HeaderComponent } from './components/header/header/header.component';
 const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule];
 
-const COMPONENTS = [InputComponent, ButtonComponent, CardComponent];
+const COMPONENTS = [InputComponent, ButtonComponent, CardComponent, HeaderComponent];
 
-const PROVIDERS = [FirestoreService, StorageService];
+const PROVIDERS = [FirestoreService, StorageService, ToastService];
 
 @NgModule({
   declarations: [...COMPONENTS],
