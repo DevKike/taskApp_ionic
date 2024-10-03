@@ -12,7 +12,8 @@ export class LoadingService {
   async showLoading(message: string = "Cargando..."){
     this.loading = await this.loadingCrl.create({
       message,
-      spinner: "crescent"
+      spinner: "crescent",
+      cssClass: 'custom-loading'
     });
 
     await this.loading.present();

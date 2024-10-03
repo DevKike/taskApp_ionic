@@ -83,8 +83,9 @@ export class RegisterPage {
       this.form.reset();
       this.navCtrl.navigateForward('/login');
     } catch (error) {
+      this.loadingSrv.hideLoading();
       this.toastSrv.dismissToast();
-      this.toastSrv.presentToast('Error registering');
+      this.toastSrv.presentErrorToast('Error registering');
 
       console.error(error);
     }

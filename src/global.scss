@@ -62,3 +62,34 @@
   text-align: center;
   font-size: 16px;
 }
+.error-toast {
+  --background: #FF0000; /* Color rojo */
+  --text-color: #FFFFFF; /* Color blanco para el texto */
+}
+.custom-loading {
+  --background: #ffffff;
+  --text-color: #fff;
+  --spinner-color: #4CAF50;
+
+  .loading-wrapper {
+    background-color: var(--background);
+    border-radius: 10px;
+    padding: 20px;
+    text-align: center;
+  }
+
+  .loading-spinner {
+    color: var(--spinner-color);
+  }
+
+  .loading-message {
+    color: var(--text-color);
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+
+.error-toast {
+  --background: #FF3737;
+  --color: #FFFFFF;
+}

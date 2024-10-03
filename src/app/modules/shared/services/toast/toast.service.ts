@@ -10,7 +10,7 @@ export class ToastService {
 
   constructor(private toastCtrl: ToastController) { }
 
-  async presentToast(message: string, duration: number = 3000) {
+  async presentToast(message: string, duration: number = 2000) {
     const toast = await this.toastCtrl.create({
       message,
       duration,
@@ -29,6 +29,16 @@ export class ToastService {
       cssClass: 'loading-toast'
     });
     await this.loadingToast.present();
+  }
+
+  async presentErrorToast(message: string, duration: number = 2000) {
+    const toast = await this.toastCtrl.create({
+      message,
+      duration,
+      position: 'top',
+      cssClass: 'error-toast',
+    });
+    toast.present();
   }
 
   async dismissToast() {
