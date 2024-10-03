@@ -23,7 +23,7 @@ export class LoginPage {
       try {
         await this.authSrv.login(email, password);
         console.log('login successfully');
-        this.navCtrl.navigateForward('/home');
+        this.navCtrl.navigateForward('/tasks');
       } catch (error) {
         console.error('login failed', error);
       }
