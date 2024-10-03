@@ -13,7 +13,7 @@ export class LoginPage {
   public password!: FormControl;
   public form!: FormGroup;
 
-  constructor(private readonly navCtrl: NavController, private readonly authSrv: AuthService) {
+  constructor(private readonly _navCtrl: NavController, private readonly _authSrv: AuthService) {
     this.initForm();
   }
 
@@ -21,9 +21,9 @@ export class LoginPage {
     if (this.form.value) {
       const { email, password } = this.form.value;
       try {
-        await this.authSrv.login(email, password);
+        await this._authSrv.login(email, password);
         console.log('login successfully');
-        this.navCtrl.navigateForward('/tasks');
+        this._navCtrl.navigateForward('/tasks');
       } catch (error) {
         console.error('login failed', error);
       }
