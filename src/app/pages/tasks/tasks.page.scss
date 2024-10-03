@@ -1,0 +1,56 @@
+@import url("https://fonts.googleapis.com/css2?family=Grape+Nuts&family=Norican&display=swap");
+
+.rotate-center {
+  animation: rotate-center 0.4s;
+}
+@keyframes rotate-center {
+  0% {
+    transform: rotate(0);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+ion-card {
+  --background: #ffffff;
+  --color: #000000;
+  background-color: #209be2;
+  border-radius: 20px 20px 20px 20px;
+}
+
+.ion-tasks {
+  --color: #000000;
+  background-color: #ffffff;
+  --background: #ffffff;
+}
+
+ion-title {
+    background-color: #209be2;
+
+  font-size: 24px;
+
+  color: #ffffff;
+
+}
+
+ion-card-subtitle {
+  --color: #000000;
+}
+
+@keyframes addTaskAnimation {
+  0% {
+    transform: scale(0.5);
+    opacity: 0;
+  }
+  100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+}
+
+#new-task-card {
+  &.animate {
+    animation: addTaskAnimation 0.5s ease-in-out;
+  }
+}
