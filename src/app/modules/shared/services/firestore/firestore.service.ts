@@ -15,9 +15,21 @@ export class FirestoreService {
     }
   }
 
-  public get() {}
+  public get(collection: string) {
+    try {
+      return this._ngFirestore.collection(collection).get();
+    } catch(error) {
+      throw error;
+    }
+  }
 
-  public delete() {}
+  public delete(collection: string) {
+    try {
+      return this._ngFirestore.collection(collection).doc().delete();
+    } catch (error) {
+      throw error;
+    } 
+  }
 
   public update() {}
 }
