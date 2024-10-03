@@ -22,8 +22,12 @@ export class AuthService {
 
   public async isAuth() {
     const user = await this.angularFire.currentUser;
-    console.log(user, !!user);
     return !!user;
+  }
+
+  public async getAuthUserId() {
+    const user = await this.angularFire.currentUser;
+    return user?.uid;
   }
 
 }
