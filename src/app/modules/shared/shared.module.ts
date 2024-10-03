@@ -11,9 +11,11 @@ import { StorageService } from './services/storage/storage.service';
 import { ToastService } from './services/toast/toast.service';
 import { HeaderComponent } from './components/header/header/header.component';
 import { LoadingService } from './services/loading/loading.service';
+import { SidebarComponent } from './components/sidebar/sidebar.component';
+
 const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule];
 
-const COMPONENTS = [InputComponent, ButtonComponent, CardComponent, HeaderComponent];
+const COMPONENTS = [InputComponent, ButtonComponent, CardComponent, HeaderComponent, SidebarComponent];
 
 const PROVIDERS = [FirestoreService, StorageService, ToastService, LoadingService];
 
