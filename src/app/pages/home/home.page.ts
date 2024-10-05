@@ -8,7 +8,7 @@ import { NavController } from '@ionic/angular';
 })
 export class HomePage {
 
-  constructor(private readonly navCtrl: NavController) { }
+  constructor(private readonly navCtrl: NavController) { 
 
-  
+  }
 }
