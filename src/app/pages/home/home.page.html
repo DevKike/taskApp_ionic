@@ -1,19 +1,49 @@
 <ion-content [fullscreen]="true">
-  <app-header title="Pica Hielo"></app-header>
-
+  <app-header title="task app"></app-header>
   <ion-grid>
-    <ion-row>
-      <ion-col>
-        <app-card  title="TASK MANAGMENT" subtitle="Stay organized and get things done." content="is a user-friendly app that helps you organize and manage your tasks efficiently. You can easily add, prioritize, and track tasks with due dates. With features like task completion and customizable settings, TaskMaster keeps you productive and on top of your to-do list">
-          <img src="assets/icon/task.jpg" >
-        </app-card>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <h1>Welcome to Task master ice!</h1>
+        <p>Get organized and stay productive</p>
+        <img src="assets/icon/tasks.png">
       </ion-col>
     </ion-row>
   </ion-grid>
 
   <ion-grid>
     <ion-row>
-      <ion-col><app-button></app-button></ion-col>
+      <ion-col>
+        <app-card
+          title="What it is task master?"
+          subtitle="Stay organized and get things done."
+          content="is a user-friendly app that helps you organize and manage your tasks efficiently. You can easily add, prioritize, and track tasks with due dates."
+        >
+          <img src="assets/icon/task.jpg" />
+        </app-card>
+      </ion-col>
     </ion-row>
   </ion-grid>
+  <ion-grid>
+    <ion-row>
+      <ion-col><app-button class="custom-button" ref="/login" label="Sign in"> </app-button></ion-col>
+    </ion-row>
+  </ion-grid>
+
+   <ion-grid>
+    <ion-row>
+      <ion-col size="12">
+        <div class="about-us-container">
+          <h2 class="about-title">About Us</h2>
+          <p class="about-description">
+            At Task Master Ice, our mission is to help you stay organized and productive. We believe that
+            effective task management leads to greater success and a more balanced life. Our team is
+            dedicated to providing you with the best tools and features to manage your tasks effortlessly.
+          </p>
+        </div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+  
+
+  <app-footer></app-footer>
 </ion-content>
