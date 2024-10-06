@@ -1,5 +1,17 @@
-<form [formGroup]="taskForm" (ngSubmit)="addTask()">
-  <app-input label="title" [control]="title"></app-input>
-  <app-input label="description" [control]="description"></app-input>
-  <app-button type="submit"></app-button>
-</form>
+<ion-content>
+  <app-header title="Tasks"></app-header>
+  <app-card title="Create Tasks" >
+    <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+      <ion-grid>
+        <ion-row>
+          <ion-col>
+            <app-input label="Title:" [control]="title"></app-input>
+            <app-input label="Description:" [control]="description"></app-input>
+
+          </ion-col>
+        </ion-row>
+      </ion-grid>
+      <app-button label="Add Tasks" type="submit"></app-button>
+    </form>
+  </app-card>
+</ion-content>

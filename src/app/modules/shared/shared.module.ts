@@ -14,7 +14,7 @@ import { LoadingService } from './services/loading/loading.service';
 import { FooterComponent } from './components/footer/footer.component';
 
 
-const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule];
+const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, FormsModule];
 
 const COMPONENTS = [InputComponent, ButtonComponent, CardComponent, HeaderComponent, FooterComponent];
 
