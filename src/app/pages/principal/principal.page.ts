@@ -9,6 +9,6 @@ export class PrincipalPage {
   items = [
     { title: 'Create a task', ref: '/task' },
     { title: 'View tasks', ref: '/tasks' },
-    { title: 'Configuration', ref: '/configuration' }
+    { title: 'Configuration', ref: '/configuration' },
   ];
 }

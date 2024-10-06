@@ -9,6 +9,7 @@
       @for (item of items; track $index) {
         <ion-item (click)="doNavigate(item.ref)" button>{{ item.title }}</ion-item>
       }
+      <app-button (click)="doLogout()" label="Logout"></app-button>
     </ion-list>
   </ion-content>
 </ion-menu>

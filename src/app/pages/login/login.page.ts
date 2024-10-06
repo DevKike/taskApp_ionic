@@ -32,7 +32,7 @@ export class LoginPage {
       try {
         await this._authSrv.login(email, password);
         this._toastSrv.presentToast('Login with success!', 3000);
-        this._navCtrl.navigateForward('/tasks');
+        this._navCtrl.navigateForward('/principal');
       } catch (error: any) {
         if (error.code === 'auth/invalid-credential') {
           this._toastSrv.presentErrorToast('Invalid credentials', 3000);

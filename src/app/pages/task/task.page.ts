@@ -12,7 +12,6 @@ import { FirestoreService } from 'src/app/modules/shared/services/firestore/fire
 export class TaskPage {
   public title!: FormControl;
   public description!: FormControl;
-  public done!: FormControl;
 
   public taskForm!: FormGroup;
 
@@ -32,11 +31,9 @@ export class TaskPage {
       Validators.required,
       Validators.minLength(10),
     ]);
-    this.done = new FormControl(false, []);
     this.taskForm = new FormGroup({
       title: this.title,
       description: this.description,
-      done: this.done,
     });
   }
 
