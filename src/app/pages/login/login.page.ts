@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
 import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
+import { LoadingService } from 'src/app/modules/shared/services/loading/loading.service';
+import { ToastService } from 'src/app/modules/shared/services/toast/toast.service';
 
 @Component({
   selector: 'app-login',
@@ -13,22 +15,35 @@ export class LoginPage {
   public password!: FormControl;
   public form!: FormGroup;
 
-  constructor(private readonly _navCtrl: NavController, private readonly _authSrv: AuthService) {
+  constructor(
+    private readonly _navCtrl: NavController,
+    private readonly _authSrv: AuthService,
+    private readonly _toastSrv: ToastService,
+    private readonly _loadingSrv: LoadingService
+  ) {
     this.initForm();
   }
 
-  public async doLogin() {
+  protected async doLogin() {
     if (this.form.value) {
       const { email, password } = this.form.value;
+      await this._loadingSrv.showLoading();
+
       try {
         await this._authSrv.login(email, password);
-        console.log('login successfully');
+        this._toastSrv.presentToast('Login with success!', 3000);
         this._navCtrl.navigateForward('/tasks');
-      } catch (error) {
-        console.error('login failed', error);
+      } catch (error: any) {
+        if (error.code === 'auth/invalid-credential') {
+          this._toastSrv.presentErrorToast('Invalid credentials', 3000);
+        } else {
+          this._toastSrv.presentErrorToast('An error ocurred', 3000);
+        }
       }
+
+      await this._loadingSrv.hideLoading();
     } else {
-      console.warn('form not validated');
+      this._toastSrv.presentErrorToast('Form not validated', 3000);
     }
   }
 
