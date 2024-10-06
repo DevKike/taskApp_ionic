@@ -1,12 +1,20 @@
 import { NgModule } from '@angular/core';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
+
+import { IonicModule } from '@ionic/angular';
 
 import { TasksPageRoutingModule } from './tasks-routing.module';
 
 import { TasksPage } from './tasks.page';
-import { SharedModule } from '../../modules/shared/shared.module';
 
 @NgModule({
-  imports: [TasksPageRoutingModule, SharedModule],
-  declarations: [TasksPage],
+  imports: [
+    CommonModule,
+    FormsModule,
+    IonicModule,
+    TasksPageRoutingModule
+  ],
+  declarations: [TasksPage]
 })
 export class TasksPageModule {}

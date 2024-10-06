@@ -20,9 +20,28 @@ const routes: Routes = [
       import('./pages/login/login.module').then((m) => m.LoginPageModule),
   },
   {
+    path: 'principal',
+    loadChildren: () =>
+      import('./pages/principal/principal.module').then(
+        (m) => m.PrincipalPageModule
+      ),
+  },
+  {
+    path: 'task',
+    loadChildren: () =>
+      import('./pages/task/task.module').then((m) => m.TasksPageModule),
+  },
+  {
     path: 'tasks',
     loadChildren: () =>
       import('./pages/tasks/tasks.module').then((m) => m.TasksPageModule),
+  },
+  {
+    path: 'configuration',
+    loadChildren: () =>
+      import('./pages/configuration/configuration.module').then(
+        (m) => m.ConfigurationPageModule
+      ),
   },
   {
     path: '**',
@@ -30,7 +49,6 @@ const routes: Routes = [
     pathMatch: 'full',
   },
 ];
-
 @NgModule({
   imports: [
     RouterModule.forRoot(routes, { preloadingStrategy: PreloadAllModules }),
