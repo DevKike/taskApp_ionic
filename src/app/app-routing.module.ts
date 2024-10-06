@@ -30,13 +30,13 @@ const routes: Routes = [
   {
     path: 'task',
     loadChildren: () =>
-      import('./pages/task/task.module').then((m) => m.TasksPageModule),
+      import('./pages/task/task.module').then((m) => m.TaskPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'tasks',
     loadChildren: () =>
       import('./pages/tasks/tasks.module').then((m) => m.TasksPageModule),
-      canActivate: [AuthGuard]
   },
   {
     path: 'configuration',
@@ -49,7 +49,6 @@ const routes: Routes = [
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full',
-
   },
 ];
 @NgModule({

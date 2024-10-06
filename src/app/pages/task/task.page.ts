@@ -9,7 +9,7 @@ import { FirestoreService } from 'src/app/modules/shared/services/firestore/fire
   templateUrl: './task.page.html',
   styleUrls: ['./task.page.scss'],
 })
-export class TasksPage {
+export class TaskPage {
   public title!: FormControl;
   public description!: FormControl;
   public done!: FormControl;

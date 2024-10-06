@@ -1,13 +1,12 @@
 <ion-content>
   <app-header title="Tasks"></app-header>
-  <app-card title="Create Tasks" >
+  <app-card title="Create Tasks">
     <form [formGroup]="taskForm" (ngSubmit)="addTask()">
       <ion-grid>
         <ion-row>
           <ion-col>
             <app-input label="Title:" [control]="title"></app-input>
             <app-input label="Description:" [control]="description"></app-input>
-
           </ion-col>
         </ion-row>
       </ion-grid>

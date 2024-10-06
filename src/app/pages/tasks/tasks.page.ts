@@ -1,9 +1,13 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ITask } from 'src/app/interfaces/ITask';
+import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
+import { FirestoreService } from 'src/app/modules/shared/services/firestore/firestore.service';
 
 @Component({
   selector: 'app-tasks',
-  templateUrl: './task.page.html',
-  styleUrls: ['./task.page.scss'],
+  templateUrl: './tasks.page.html',
+  styleUrls: ['./tasks.page.scss'],
 })
 export class TasksPage {
   public title!: FormControl;
