@@ -10,14 +10,13 @@ export class ButtonComponent {
   @Input() label: string = 'Button';
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() disabled: boolean = false;
-  @Input() ref: string = "/";
+  @Input() ref!: string;
 
-  constructor(private readonly navCtrl: NavController) {}
+  constructor(private readonly _navCtrl: NavController) {}
   
-  navigate (){
+  public navigate (){
     if(this.ref){
-      this.navCtrl.navigateForward([this.ref])
+      this._navCtrl.navigateForward([this.ref])
     }
   }
-
 }
