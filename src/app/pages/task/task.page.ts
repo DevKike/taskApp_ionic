@@ -1,4 +1,8 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ITask } from 'src/app/interfaces/ITask';
+import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
+import { FirestoreService } from 'src/app/modules/shared/services/firestore/firestore.service';
 
 @Component({
   selector: 'app-tasks',
@@ -8,6 +12,7 @@ import { Component, OnInit } from '@angular/core';
 export class TasksPage {
   public title!: FormControl;
   public description!: FormControl;
+  public done!: FormControl;
 
   public taskForm!: FormGroup;
 
@@ -27,9 +32,11 @@ export class TasksPage {
       Validators.required,
       Validators.minLength(10),
     ]);
+    this.done = new FormControl(false, []);
     this.taskForm = new FormGroup({
       title: this.title,
       description: this.description,
+      done: this.done,
     });
   }
 

@@ -13,10 +13,10 @@ export class ButtonComponent {
   @Input() ref!: string;
 
   constructor(private readonly _navCtrl: NavController) {}
-  
-  public navigate (){
-    if(this.ref){
-      this._navCtrl.navigateForward([this.ref])
+
+  public navigate() {
+    if (this.ref) {
+      this._navCtrl.navigateForward([this.ref]);
     }
   }
 }

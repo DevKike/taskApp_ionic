@@ -9,14 +9,15 @@ import { CardComponent } from './components/card/card.component';
 import { FirestoreService } from './services/firestore/firestore.service';
 import { StorageService } from './services/storage/storage.service';
 import { ToastService } from './services/toast/toast.service';
-import { HeaderComponent } from './components/header/header/header.component';
+import { HeaderComponent } from './components/header/header.component';
 import { LoadingService } from './services/loading/loading.service';
 import { FooterComponent } from './components/footer/footer.component';
+import { MenuComponent } from './components/menu/menu.component';
 
 
 const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, FormsModule];
 
-const COMPONENTS = [InputComponent, ButtonComponent, CardComponent, HeaderComponent, FooterComponent];
+const COMPONENTS = [InputComponent, ButtonComponent, CardComponent, HeaderComponent, FooterComponent, MenuComponent];
 
 const PROVIDERS = [FirestoreService, StorageService, ToastService, LoadingService];
 

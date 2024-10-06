@@ -1,0 +1,7 @@
+<ion-content>
+  <form [formGroup]="taskForm" (ngSubmit)="addTask()">
+    <app-input label="title" [control]="title"></app-input>
+    <app-input label="description" [control]="description"></app-input>
+    <app-button type="submit"></app-button>
+  </form>
+</ion-content>
