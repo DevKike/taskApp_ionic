@@ -26,6 +26,7 @@ const routes: Routes = [
       import('./pages/principal/principal.module').then(
         (m) => m.PrincipalPageModule
       ),
+      canActivate: [AuthGuard],
   },
   {
     path: 'task',
@@ -37,6 +38,7 @@ const routes: Routes = [
     path: 'tasks',
     loadChildren: () =>
       import('./pages/tasks/tasks.module').then((m) => m.TasksPageModule),
+    canActivate: [AuthGuard],
   },
   {
     path: 'configuration',
