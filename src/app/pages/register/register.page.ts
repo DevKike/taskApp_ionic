@@ -54,7 +54,7 @@ export class RegisterPage {
 
   protected async doRegister() {
     try {
-      this.loadingSrv.showLoading('Registering...');
+      await this.loadingSrv.showLoading('Registering...');
 
       const { email, password }: IUser = this.form.value;
       const copyUser = { ...this.form.value };
@@ -78,16 +78,14 @@ export class RegisterPage {
 
       await this._firestoreSrv.create('user', user);
 
-      this.loadingSrv.hideLoading();
-      this.toastSrv.presentToast('¡Successful registration!');
+      await this.loadingSrv.hideLoading();
+      await this.toastSrv.presentToast('¡Successful registration!');
       this.form.reset();
-      this.navCtrl.navigateForward('/login');
+      await this.navCtrl.navigateForward('/login');
     } catch (error) {
-      this.loadingSrv.hideLoading();
-      this.toastSrv.dismissToast();
-      this.toastSrv.presentErrorToast('Error registering');
-
-      console.error(error);
+      await this.loadingSrv.hideLoading();
+      await this.toastSrv.dismissToast();
+      await this.toastSrv.presentErrorToast('Error registering');
     }
   }
 
