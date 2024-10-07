@@ -9,4 +9,5 @@ export class CardComponent {
   @Input() title: string = '';
   @Input() subtitle: string = '';
   @Input() content: string = '';
+  @Input() creationDate: Date | null = null;
 }
