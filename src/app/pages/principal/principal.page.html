@@ -1,3 +1,12 @@
-<ion-content>
+<ion-content [fullscreen]="true">
   <app-menu headerTitle="Principal" menuTitle="Menu" [items]="items"></app-menu>
+  <ion-grid>
+    <ion-row class="ion-justify-content-center ion-align-items-center">
+      <ion-col size="12" class="ion-text-center">
+        <h1>Welcome to Task master ice!</h1>
+        <p>Get organized and stay productive</p>
+        <img src="assets/icon/principal.jpeg" />
+      </ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
