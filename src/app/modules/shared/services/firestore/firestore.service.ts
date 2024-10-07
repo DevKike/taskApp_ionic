@@ -8,9 +8,9 @@ import { lastValueFrom } from 'rxjs';
 export class FirestoreService {
   constructor(private readonly _ngFirestore: AngularFirestore) {}
 
-  public async create(collection: string, data: any) {
+  public async create(collection: string, data: any): Promise<void> {
     try {
-      return await this._ngFirestore.collection(collection).add(data);
+      await this._ngFirestore.collection(collection).add(data);
     } catch (error) {
       throw error;
     }
@@ -19,8 +19,16 @@ export class FirestoreService {
   public async getCollections(collection: string): Promise<any[]> {
     try {
       const collectionRef = this._ngFirestore.collection(collection);
-      const snapshot = lastValueFrom(collectionRef.get());
-      return (await snapshot).docs.map((doc) => ({ id: doc.id, ...doc.data }));
+      const snapshot = await lastValueFrom(collectionRef.get());
+
+      return snapshot.docs.map((doc) => {
+        const data = doc.data();
+        if (data) {
+          return { id: doc.id, ...data };
+        } else {
+          return { id: doc.id };
+        }
+      });
     } catch (error) {
       throw error;
     }
@@ -30,19 +38,26 @@ export class FirestoreService {
     try {
       const docRef = this._ngFirestore.collection(collection).doc(documentId);
       const snapshot = await lastValueFrom(docRef.get());
-
+      
       return { id: snapshot.id, ...(snapshot.data() || {}) };
     } catch (error) {
       throw error;
     }
   }
 
-  public delete(collection: string) {
+  public async delete(collection: string, docId: string): Promise<void> {
     try {
+      await this._ngFirestore.collection(collection).doc(docId).delete();
     } catch (error) {
       throw error;
     }
   }
 
-  public update() {}
+  public async update(collection: string, docId: string, data: any) {
+    try {
+      await this._ngFirestore.collection(collection).doc(docId).update(data);
+    } catch (error) {
+      throw error;
+    }
+  }
 }
