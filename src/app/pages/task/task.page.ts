@@ -3,6 +3,8 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ITask } from 'src/app/interfaces/ITask';
 import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore/firestore.service';
+import { LoadingService } from 'src/app/modules/shared/services/loading/loading.service';
+import { ToastService } from 'src/app/modules/shared/services/toast/toast.service';
 
 @Component({
   selector: 'app-tasks',
@@ -17,7 +19,9 @@ export class TaskPage {
 
   constructor(
     private readonly _firestoreSrv: FirestoreService,
-    private readonly _authSrv: AuthService
+    private readonly _authSrv: AuthService,
+    private readonly _loadingSrv: LoadingService,
+    private readonly _toastSrv: ToastService
   ) {
     this.initForm();
   }
@@ -39,6 +43,7 @@ export class TaskPage {
 
   protected async addTask() {
     try {
+      this._loadingSrv.showLoading('Creating task...');
       const task: ITask = this.taskForm.value;
       const copyTask = { ...this.taskForm.value };
       const isAuth = await this._authSrv.isAuth();
@@ -47,9 +52,14 @@ export class TaskPage {
         const userId = await this._authSrv.getAuthUserId();
 
         const newTask = { userId, ...copyTask };
-        this._firestoreSrv.create('tasks', newTask);
+        await this._firestoreSrv.create('tasks', newTask);
+        this._loadingSrv.hideLoading();
+        this._toastSrv.presentToast('Task added successfully!');
+        this.taskForm.reset();
       }
     } catch (error) {
+      this._loadingSrv.hideLoading();
+      this._toastSrv.presentErrorToast('Error adding task');
       throw error;
     }
   }
