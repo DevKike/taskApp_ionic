@@ -38,7 +38,7 @@ export class FirestoreService {
     try {
       const docRef = this._ngFirestore.collection(collection).doc(documentId);
       const snapshot = await lastValueFrom(docRef.get());
-
+      
       return { id: snapshot.id, ...(snapshot.data() || {}) };
     } catch (error) {
       throw error;
