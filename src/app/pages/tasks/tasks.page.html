@@ -1,19 +1,15 @@
 <ion-content>
   <app-header title="My Tasks"></app-header>
 
-@for (task of filteredTasks; track $index) {
+  @for (task of filteredTasks; track $index) {
   <ion-grid>
     <ion-row>
       <ion-col>
-        <app-card
-        [title]="task.title"
-        [content]="task.description"
-        [creationDate]="task.creationDate"
-        >
+        <app-card [title]="task.title" [content]="task.description" [creationDate]="task.creationDate">
+          <app-button label="Delete Task" color="danger" (click)="deleteTasks(task.id)"></app-button>
         </app-card>
-        <ion-button color="danger" (click)="deleteTasks(task.id)">Eliminar</ion-button>
       </ion-col>
     </ion-row>
   </ion-grid>
-}
+  }
 </ion-content>
