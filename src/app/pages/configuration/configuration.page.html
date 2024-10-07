@@ -1,13 +1,48 @@
-<ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>configuration</ion-title>
-  </ion-toolbar>
-</ion-header>
-
 <ion-content [fullscreen]="true">
-  <ion-header collapse="condense">
-    <ion-toolbar>
-      <ion-title size="large">configuration</ion-title>
-    </ion-toolbar>
-  </ion-header>
+  <app-header [title]="'Update'"></app-header>
+  <app-card title="Update" content="Please complete the form to update.">
+    <form [formGroup]="form" (ngSubmit)="doUpdate()">
+      <ion-row>
+        <ion-col>
+          <app-input  [control]="name" label="Name:" placeholder="Your name"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input [control]="lastName" label="Last Name:" placeholder="Your last name"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input [control]="email" label="Email:" type="email" placeholder="jane@doe.com"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input [control]="password" label="Password:" type="password" placeholder="**********"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input [control]="age" label="Age:" type="number" placeholder="Your age"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-input [control]="phoneNumber" label="Phone Number:" type="number" placeholder="Your phone number"></app-input>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col>
+          <app-button [disabled]="form.invalid" label="Register" type="submit"></app-button>
+        </ion-col>
+        <ion-col>
+          <app-button label="ADD FILE" expand="full" (click)="fileInput.click()">
+          </app-button>
+          
+          <input type="file" #fileInput (change)="uploadImage($event)" hidden />
+        </ion-col>
+      </ion-row>
+    </form>
+  </app-card>
 </ion-content>
