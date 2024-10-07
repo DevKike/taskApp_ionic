@@ -22,14 +22,16 @@ export class RegisterPage {
   public phoneNumber!: FormControl;
   public form!: FormGroup;
   private fileToUpload: any;
+  protected imageUrl: string = 'https://cdn-icons-png.freepik.com/512/6596/6596121.png';
+  protected filePath!: string;
 
   constructor(
     private readonly _authSrv: AuthService,
     private readonly _firestoreSrv: FirestoreService,
     private readonly _storageSrv: StorageService,
-    private readonly toastSrv: ToastService,
-    private readonly navCtrl: NavController,
-    private readonly loadingSrv: LoadingService
+    private readonly _toastSrv: ToastService,
+    private readonly _navCtrl: NavController,
+    private readonly _loadingSrv: LoadingService
   ) {
     this.initForm();
   }
@@ -54,46 +56,39 @@ export class RegisterPage {
 
   protected async doRegister() {
     try {
-      await this.loadingSrv.showLoading('Registering...');
+      await this._loadingSrv.showLoading('Registering...');
 
       const { email, password }: IUser = this.form.value;
       const copyUser = { ...this.form.value };
 
       const res = await this._authSrv.register(email, password);
-
       const uid = res.user?.uid || '';
-      const user = { uid, ...copyUser };
+
+      const user = { uid, imageUrl: this.imageUrl, ...copyUser };
 
       delete user.email;
       delete user.password;
 
-      if (this.fileToUpload) {
-        const filePath = `users/${this.fileToUpload.name}`;
-        await this._storageSrv.upload(filePath, this.fileToUpload);
-        const image = await this.getImageUrl(filePath);
-
-        const userWithUrlImage = { image, ...user };
-        await this._firestoreSrv.create('user', userWithUrlImage);
-      }
-
       await this._firestoreSrv.create('user', user);
 
-      await this.loadingSrv.hideLoading();
-      await this.toastSrv.presentToast('¡Successful registration!');
+      await this._loadingSrv.hideLoading();
+      await this._toastSrv.presentToast('¡Successful registration!');
       this.form.reset();
-      await this.navCtrl.navigateForward('/login');
+      await this._navCtrl.navigateForward('/login');
     } catch (error) {
-      await this.loadingSrv.hideLoading();
-      await this.toastSrv.dismissToast();
-      await this.toastSrv.presentErrorToast('Error registering');
+      await this._loadingSrv.hideLoading();
+      await this._toastSrv.dismissToast();
+      await this._toastSrv.presentErrorToast('Error registering');
     }
   }
 
   protected async uploadImage(event: any) {
+    await this._loadingSrv.showLoading();
     this.fileToUpload = event.target.files[0];
-  }
-
-  private async getImageUrl(filePath: string) {
-    return await this._storageSrv.getUrl(filePath);
+    this.filePath = `users/${this.fileToUpload.name}`
+    await this._storageSrv.upload(this.filePath, this.fileToUpload);
+    this.imageUrl = await this._storageSrv.getUrl(this.filePath);
+    await this._loadingSrv.hideLoading();
+    await this._toastSrv.presentToast('Image uploaded with success!');
   }
 }

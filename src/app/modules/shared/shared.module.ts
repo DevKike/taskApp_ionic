@@ -13,13 +13,32 @@ import { HeaderComponent } from './components/header/header.component';
 import { LoadingService } from './services/loading/loading.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
+import { ThumbnailComponent } from './components/thumbnail/thumbnail.component';
 
+const MODULES = [
+  CommonModule,
+  FormsModule,
+  IonicModule,
+  ReactiveFormsModule,
+  FormsModule,
+];
 
-const MODULES = [CommonModule, FormsModule, IonicModule, ReactiveFormsModule, FormsModule];
+const COMPONENTS = [
+  InputComponent,
+  ButtonComponent,
+  CardComponent,
+  HeaderComponent,
+  FooterComponent,
+  MenuComponent,
+  ThumbnailComponent,
+];
 
-const COMPONENTS = [InputComponent, ButtonComponent, CardComponent, HeaderComponent, FooterComponent, MenuComponent];
-
-const PROVIDERS = [FirestoreService, StorageService, ToastService, LoadingService];
+const PROVIDERS = [
+  FirestoreService,
+  StorageService,
+  ToastService,
+  LoadingService,
+];
 
 @NgModule({
   declarations: [...COMPONENTS],
