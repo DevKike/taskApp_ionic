@@ -21,7 +21,7 @@ export class TaskPage {
   ) {
     this.initForm();
   }
-
+  
   private initForm() {
     this.title = new FormControl('', [
       Validators.required,

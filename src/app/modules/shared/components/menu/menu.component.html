@@ -1,23 +1,26 @@
-<ion-menu contentId="main-content">
-  <ion-header>
-    <ion-toolbar>
-      <ion-title>{{ menuTitle }}</ion-title>
-    </ion-toolbar>
-  </ion-header>
-  <ion-content class="ion-padding">
-    <ion-list>
-      @for (item of items; track $index) {
-        <ion-item (click)="doNavigate(item.ref)" button>{{ item.title }}</ion-item>
-      }
-      <app-button (click)="doLogout()" label="Logout"></app-button>
-    </ion-list>
-  </ion-content>
-</ion-menu>
-
-<div class="ion-page" id="main-content">
-  <app-header title="{{ headerTitle }}">
-    <ion-buttons slot="start">
-      <ion-menu-button></ion-menu-button>
-    </ion-buttons>
-  </app-header>
-</div>
+@if(showMenu) {
+  <ion-menu contentId="main-content">
+    <ion-header>
+      <ion-toolbar>
+        <ion-title>Menu</ion-title>
+      </ion-toolbar>
+    </ion-header>
+    <ion-content class="ion-padding">
+      <ion-list>
+        @for (item of items; track $index) {
+          <ion-item (click)="doNavigate(item.ref)" button>{{ item.title }}</ion-item>
+        }
+        <br><br><br><br><br>
+        <app-button (click)="doLogout()" label="Logout"></app-button>
+      </ion-list>
+    </ion-content>
+  </ion-menu>
+  
+  <div class="ion-page" id="main-content">
+    <app-header title="{{ headerTitle }}">
+      <ion-buttons slot="start">
+        <ion-menu-button></ion-menu-button>
+      </ion-buttons>
+    </app-header>
+  </div>
+}
