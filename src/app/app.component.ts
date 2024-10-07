@@ -10,15 +10,15 @@ import { MenuController } from '@ionic/angular';
 export class AppComponent {
   protected showMenu: boolean = false;
 
-  constructor(private readonly router: Router, private readonly menu: MenuController) {
-    this.router.events.subscribe((event) => {
+  constructor(private readonly _router: Router, private readonly _menu: MenuController) {
+    this._router.events.subscribe((event) => {
       if (event instanceof NavigationEnd) {
         this.showMenu =
           event.url === '/principal' ||
           event.url === '/task' ||
           event.url === '/tasks' ||
           event.url === '/configuration';
-        this.menu.close();
+        this._menu.close();
       }
     });
   }
