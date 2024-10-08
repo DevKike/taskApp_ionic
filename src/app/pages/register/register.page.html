@@ -1,50 +1,52 @@
-<ion-content [fullscreen]="true">
-  <app-header [title]="'Register'"></app-header>
+<ion-content [fullscreen]="true" class="ion-padding">
+
   <app-card title="Register" content="Please complete the form to register.">
     <form [formGroup]="form" (ngSubmit)="doRegister()">
-      <ion-row>
-        <ion-col>
-          <app-input  [control]="name" label="Name:" placeholder="Your name"></app-input>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="8" class="ion-text-center">
+          <div class="image-upload-container">
+            <div class="image-preview" [style.backgroundImage]="'url(' + imageUrl + ')'">
+              <input type="file" #fileInput (change)="uploadImage($event)" hidden />
+              <ion-button fill="clear" (click)="fileInput.click()">
+                <ion-icon name="camera-outline" slot="icon-only"></ion-icon>
+              </ion-button>
+            </div>
+          </div>
         </ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col>
+        <ion-col size="12" size-md="6">
+          <app-input [control]="name" label="Name:" placeholder="Your name"></app-input>
+        </ion-col>
+        <ion-col size="12" size-md="6">
           <app-input [control]="lastName" label="Last Name:" placeholder="Your last name"></app-input>
         </ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col>
+        <ion-col size="12" size-md="6">
           <app-input [control]="email" label="Email:" type="email" placeholder="jane@doe.com"></app-input>
         </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
+        <ion-col size="12" size-md="6">
           <app-input [control]="password" label="Password:" type="password" placeholder="**********"></app-input>
         </ion-col>
       </ion-row>
+
       <ion-row>
-        <ion-col>
+        <ion-col size="12" size-md="6">
           <app-input [control]="age" label="Age:" type="number" placeholder="Your age"></app-input>
         </ion-col>
-      </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-input [control]="phoneNumber" label="Phone Number:" type="number" placeholder="Your phone number"></app-input>
+        <ion-col size="12" size-md="6">
+          <app-input [control]="phoneNumber" label="Phone Number:" type="tel" placeholder="Your phone number"></app-input>
         </ion-col>
       </ion-row>
-      <ion-row>
-        <ion-col>
-          <app-button [disabled]="form.invalid" label="Register" type="submit"></app-button>
-        </ion-col>
-        <ion-col>
-          <app-button label="ADD FILE" expand="full" (click)="fileInput.click()"></app-button>
 
-          <app-thumbnail [url]="imageUrl"></app-thumbnail>
-          
-          <input type="file" #fileInput (change)="uploadImage($event)" hidden />
+      <ion-row class="ion-justify-content-center ion-margin-top">
+        <ion-col size="12" size-md="6">
+          <app-button [disabled]="form.invalid" label="Register" type="submit" expand="block"></app-button>
         </ion-col>
       </ion-row>
     </form>
   </app-card>
 </ion-content>
-
