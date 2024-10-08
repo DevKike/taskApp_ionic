@@ -25,7 +25,7 @@ export class TaskPage {
   ) {
     this.initForm();
   }
-  
+
   private initForm() {
     this.title = new FormControl('', [
       Validators.required,
@@ -51,11 +51,17 @@ export class TaskPage {
       if (isAuth) {
         const userId = await this._authSrv.getAuthUserId();
 
-        const newTask = { userId, ...copyTask };
+        const newTask = {
+          userId,
+          ...copyTask,
+          creationDate: new Date(),
+        };
+        console.log('Fecha y hora de creación:', newTask.creationDate);
         await this._firestoreSrv.create('tasks', newTask);
         this._loadingSrv.hideLoading();
         this._toastSrv.presentToast('Task added successfully!');
         this.taskForm.reset();
+
       }
     } catch (error) {
       this._loadingSrv.hideLoading();

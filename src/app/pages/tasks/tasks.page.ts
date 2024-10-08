@@ -19,7 +19,7 @@ export class TasksPage implements OnInit {
     private readonly _toastSrv: ToastService
   ) {}
 
-  async ngOnInit() {
+  ngOnInit() {
     this.loadTasks();
   }
 
@@ -27,31 +27,24 @@ export class TasksPage implements OnInit {
     try {
       const currentUserId = await this._authSrv.getAuthUserId();
       const tasks = await this._firestoreSrv.getCollections('tasks');
-      console.log('Todas las tareas recuperadas:', tasks);
       this.filteredTasks = tasks
         .filter((task) => task.userId === currentUserId)
-        .map((task) => ({
-          ...task,
-          creationDate: task.creationDate || new Date(),
-        }));
-      console.log(
-        'Tareas filtradas para el usuario actual:',
-        this.filteredTasks
-      );
+        .map((task) => ({ ...task, creationDate: task.creationDate.toDate() }));
+      this.filteredTasks = [...this.filteredTasks];
     } catch (error) {
       throw error;
     }
   }
 
-  protected async deleteTasks(taskId: string) {
+
+     async deleteTasks(taskId: string) {
     try {
       this._loadingSrv.showLoading('Deleting Task...');
       await this._firestoreSrv.delete('tasks', taskId);
-      this.filteredTasks = this.filteredTasks.filter(
-        (task) => task.id !== taskId
-      );
+      this.filteredTasks = this.filteredTasks.filter((task) => task.id !== taskId);
       this._loadingSrv.hideLoading();
       this._toastSrv.presentToast('Task deleted successfully');
+      await this.loadTasks(); 
     } catch (error) {
       this._loadingSrv.hideLoading();
       this._toastSrv.presentErrorToast('Error deleting task');

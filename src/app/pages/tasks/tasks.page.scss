@@ -1,6 +1,54 @@
-ion-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: flex-start;
-  align-items: center;
+.task-card {
+  width: 100%;
+
+  .task-header {
+    margin-bottom: 8px;
+
+    h2 {
+      margin: 0;
+      font-size: 1.2rem;
+      font-weight: 600;
+      color: var(--ion-color-primary);
+    }
+  }
+
+  .task-description {
+    font-size: 1rem;
+    color: var(--ion-color-dark);
+    margin-bottom: 12px;
+    padding-left: 8px;
+    border-left: 3px solid var(--ion-color-primary);
+  }
+
+  .task-footer {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: 12px;
+
+    small {
+      font-size: 0.8rem;
+    }
+  }
+
+  .task-actions {
+    display: flex;
+    gap: 8px;
+  }
+}
+
+ion-item-sliding {
+  background: transparent;
+}
+
+ion-item {
+  --background: transparent;
+  --padding-start: 0;
+  --inner-padding-end: 0;
+}
+
+ion-fab-button {
+  --background: var(--ion-color-primary);
+  --background-activated: var(--ion-color-primary-shade);
+  --background-hover: var(--ion-color-primary-tint);
 }
