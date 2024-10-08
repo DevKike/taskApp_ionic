@@ -11,6 +11,8 @@ export class ButtonComponent {
   @Input() type: 'button' | 'submit' | 'reset' = 'button';
   @Input() disabled: boolean = false;
   @Input() ref!: string;
+  @Input() icon?: string;
+  @Input() color: string = 'primary';
 
   constructor(private readonly _navCtrl: NavController) {}
 
