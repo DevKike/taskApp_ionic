@@ -40,7 +40,7 @@ export class TasksPage implements OnInit {
      async deleteTasks(taskId: string) {
     try {
       this._loadingSrv.showLoading('Deleting Task...');
-      await this._firestoreSrv.delete('tasks', taskId);
+      await this._firestoreSrv.delete('task', taskId);
       this.filteredTasks = this.filteredTasks.filter((task) => task.id !== taskId);
       this._loadingSrv.hideLoading();
       this._toastSrv.presentToast('Task deleted successfully');
