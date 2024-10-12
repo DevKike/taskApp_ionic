@@ -1,7 +1,6 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
-import { ITask } from 'src/app/interfaces/ITask';
 import { IUser } from 'src/app/interfaces/IUser';
 import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
 import { FirestoreService } from 'src/app/modules/shared/services/firestore/firestore.service';
@@ -15,27 +14,24 @@ import { ToastService } from 'src/app/modules/shared/services/toast/toast.servic
   styleUrls: ['./configuration.page.scss'],
 })
 export class ConfigurationPage {
-  public email!: FormControl;
-  public password!: FormControl;
-  public name!: FormControl;
-  public lastName!: FormControl;
-  public age!: FormControl;
-  public phoneNumber!: FormControl;
-  public form!: FormGroup;
+  protected email!: FormControl;
+  protected password!: FormControl;
+  protected name!: FormControl;
+  protected lastName!: FormControl;
+  protected age!: FormControl;
+  protected phoneNumber!: FormControl;
+  protected form!: FormGroup;
   private fileToUpload: any;
+
   constructor(
     private readonly _authSrv: AuthService,
     private readonly _firestoreSrv: FirestoreService,
     private readonly _storageSrv: StorageService,
-    private readonly toastSrv: ToastService,
-    private readonly navCtrl: NavController,
-    private readonly loadingSrv: LoadingService
+    private readonly _toastSrv: ToastService,
+    private readonly _navCtrl: NavController,
+    private readonly _loadingSrv: LoadingService
   ) {
     this.initForm();
-  }
-
-  protected async updateUser(collection: string, docId: string, data: ITask) {
-    await this._firestoreSrv.update(collection, docId, data);
   }
 
   private initForm() {
@@ -58,18 +54,27 @@ export class ConfigurationPage {
 
   protected async doUpdate() {
     try {
-      await this.loadingSrv.showLoading('Updating...');
+      await this._loadingSrv.showLoading('Updating...');
 
+      const userId = await this._authSrv.getAuthUserId();
 
-      //await this._firestoreSrv.update('user',  , user);
+      if (userId) {
+        const users = await this._firestoreSrv.getDocumentsByCollection('user');
+        const userDoc = users.find((user) => user.uid === userId);
 
-      await this.loadingSrv.hideLoading();
-      await this.toastSrv.presentToast('¡Successful update!');
+        if (userDoc) {
+          const newUser: IUser = this.form.value
+          await this._firestoreSrv.update('user', userDoc.id, newUser);
+        }
+      } else
+
+      await this._loadingSrv.hideLoading();
+      await this._toastSrv.presentToast('¡Successful update!');
       this.form.reset();
     } catch (error) {
-      await this.loadingSrv.hideLoading();
-      await this.toastSrv.dismissToast();
-      await this.toastSrv.presentErrorToast('Error updating');
+      await this._loadingSrv.hideLoading();
+      await this._toastSrv.dismissToast();
+      await this._toastSrv.presentErrorToast('Error updating');
     }
   }
 
