@@ -17,7 +17,6 @@ export class AuthService {
 
   public async logout() {
     const logoutRes = await this._angularFire.signOut();
-    console.log("🚀 ~ AuthService ~ logout ~ logoutRes:", logoutRes)
   }
 
   public async isAuth() {
