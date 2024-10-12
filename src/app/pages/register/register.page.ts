@@ -69,7 +69,7 @@ export class RegisterPage {
       delete user.email;
       delete user.password;
 
-      await this._firestoreSrv.create('user', user);
+      await this._firestoreSrv.create(`user/`, user);
 
       await this._loadingSrv.hideLoading();
       await this._toastSrv.presentToast('¡Successful registration!');

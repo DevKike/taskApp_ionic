@@ -56,8 +56,7 @@ export class TaskPage {
           ...copyTask,
           creationDate: new Date(),
         };
-        console.log('Fecha y hora de creación:', newTask.creationDate);
-        await this._firestoreSrv.create('tasks', newTask);
+        await this._firestoreSrv.create('task', newTask);
         this._loadingSrv.hideLoading();
         this._toastSrv.presentToast('Task added successfully!');
         this.taskForm.reset();
