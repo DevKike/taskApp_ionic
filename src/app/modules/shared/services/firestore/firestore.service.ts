@@ -15,8 +15,8 @@ export class FirestoreService {
       throw error;
     }
   }
-  
-  public async getCollections(collection: string): Promise<any[]> {
+
+  public async getDocumentsByCollection(collection: string): Promise<any[]> {
     try {
       const collectionRef = this._ngFirestore.collection(collection);
       const snapshot = await lastValueFrom(collectionRef.get());
@@ -49,12 +49,11 @@ export class FirestoreService {
     try {
       await this._ngFirestore.collection(collection).doc(docId).delete();
     } catch (error) {
-      console.error('Error en la eliminación de Firestore:', error); 
       throw error;
     }
   }
 
-  public async update(collection: string, docId: string, data: any) {
+  public async update(collection: string, docId: string, data: any): Promise<void> {
     try {
       await this._ngFirestore.collection(collection).doc(docId).update(data);
     } catch (error) {

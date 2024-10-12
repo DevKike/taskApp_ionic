@@ -26,7 +26,7 @@ export class TasksPage implements OnInit {
   protected async loadTasks() {
     try {
       const currentUserId = await this._authSrv.getAuthUserId();
-      const tasks = await this._firestoreSrv.getCollections('tasks');
+      const tasks = await this._firestoreSrv.getDocumentsByCollection('task');
       this.filteredTasks = tasks
         .filter((task) => task.userId === currentUserId)
         .map((task) => ({ ...task, creationDate: task.creationDate.toDate() }));
