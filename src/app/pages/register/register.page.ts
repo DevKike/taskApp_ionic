@@ -85,7 +85,7 @@ export class RegisterPage {
   protected async uploadImage(event: any) {
     await this._loadingSrv.showLoading();
     this.fileToUpload = event.target.files[0];
-    this.filePath = `users/${this.fileToUpload.name}`
+    this.filePath = `user/${this.fileToUpload.name}`
     await this._storageSrv.upload(this.filePath, this.fileToUpload);
     this.imageUrl = await this._storageSrv.getUrl(this.filePath);
     await this._loadingSrv.hideLoading();
