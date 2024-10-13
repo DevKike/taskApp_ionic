@@ -2,25 +2,27 @@
   <app-header title="My Tasks"></app-header>
 
   <ion-list>
-    <ion-item-sliding *ngFor="let task of filteredTasks">
-      <ion-item lines="full">
-        <app-card class="task-card">
-          <div class="task-header">
-            <h2>{{ task.title }}</h2>
-          </div>
-          <p class="task-description">{{ task.description }}</p>
-          <div class="task-footer">
-            <ion-text color="medium">
-              <small>Created: {{ task.creationDate | date: 'short' }}</small>
-            </ion-text>
-          </div>
-        </app-card>
-      </ion-item>
-      <ion-item-options side="end">
-        <ion-item-option color="danger" (click)="deleteTasks(task.id)">
-          <ion-icon slot="icon-only" name="trash"></ion-icon>
-        </ion-item-option>
-      </ion-item-options>
-    </ion-item-sliding>
+    @for (task of tasks; track $index) {
+      <ion-item-sliding>
+        <ion-item lines="full">
+          <app-card class="task-card">
+            <div class="task-header">
+              <h2>{{ task.title }}</h2>
+            </div>
+            <p class="task-description">{{ task.description }}</p>
+            <div class="task-footer">
+              <ion-text color="medium">
+                <small>Created at: {{ task.creationDate }}</small>
+              </ion-text>
+            </div>
+          </app-card>
+        </ion-item>
+        <ion-item-options side="end">
+          <ion-item-option color="danger" (click)="deleteTasks(task.id)">
+            <ion-icon slot="icon-only" name="trash"></ion-icon>
+          </ion-item-option>
+        </ion-item-options>
+      </ion-item-sliding>
+    } 
   </ion-list>
 </ion-content>
