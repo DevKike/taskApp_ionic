@@ -50,17 +50,19 @@ export class TaskPage {
 
       if (isAuth) {
         const userId = await this._authSrv.getAuthUserId();
+        const date = new Date();
+        const formattedDate: string = date.toLocaleString();
 
         const newTask = {
           userId,
+          creationDate: formattedDate,
           ...copyTask,
-          creationDate: new Date(),
         };
+
         await this._firestoreSrv.create('task', newTask);
         this._loadingSrv.hideLoading();
         this._toastSrv.presentToast('Task added successfully!');
         this.taskForm.reset();
-
       }
     } catch (error) {
       this._loadingSrv.hideLoading();
