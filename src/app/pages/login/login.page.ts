@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { NavController } from '@ionic/angular';
+import { IUserLogin } from 'src/app/interfaces/IUser';
 import { AuthService } from 'src/app/modules/shared/services/auth/auth.service';
 import { LoadingService } from 'src/app/modules/shared/services/loading/loading.service';
 import { ToastService } from 'src/app/modules/shared/services/toast/toast.service';
@@ -26,7 +27,7 @@ export class LoginPage {
 
   protected async doLogin() {
     if (this.form.value) {
-      const { email, password } = this.form.value;
+      const { email, password }: IUserLogin = this.form.value;
       await this._loadingSrv.showLoading();
 
       try {
@@ -40,7 +41,6 @@ export class LoginPage {
           this._toastSrv.presentErrorToast('An error ocurred', 3000);
         }
       }
-
       await this._loadingSrv.hideLoading();
     } else {
       this._toastSrv.presentErrorToast('Form not validated', 3000);
