@@ -26,12 +26,17 @@ export class TasksPage {
 
   protected async loadTasks() {
     try {
+      await this._loadingSrv.showLoading('Loading...');
+      
       const userId = await this._authSrv.getAuthUserId();
       const tasks = await this._firestoreSrv.getDocumentsByCollection('task');
       const userTasks = tasks.filter((task) => task.userId === userId);
       this.tasks = userTasks;
+      await this._loadingSrv.hideLoading();
+
     } catch (error) {
-      throw error;
+      await this._loadingSrv.hideLoading();
+
     }
   }
 
