@@ -6,5 +6,9 @@ export interface IUser {
   phone_number: number;
   email: string;
   password: string;
-  image?: string;
+  imageUrl?: string;
 }
+
+export interface IUserLogin extends Pick<IUser, 'email' | 'password'> {}
+
+export interface IUserUpdate extends Omit<IUser, 'id' | 'email' | 'password'> {}
