@@ -1,4 +1,8 @@
+@if (uid) {
+  <app-header title="Configuration"></app-header>
+}
 <ion-content [fullscreen]="true" class="ion-padding">
+
 
   <app-card title="{{ uid?'Update': 'Register' }}" content="{{ uid?'Please complete the form to update': 'Please complete the form to register' }}.">
     <ion-grid>
