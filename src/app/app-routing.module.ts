@@ -41,13 +41,6 @@ const routes: Routes = [
     canActivate: [AuthGuard],
   },
   {
-    path: 'configuration',
-    loadChildren: () =>
-      import('./pages/configuration/configuration.module').then(
-        (m) => m.ConfigurationPageModule
-      ),
-  },
-  {
     path: '**',
     redirectTo: 'home',
     pathMatch: 'full',
