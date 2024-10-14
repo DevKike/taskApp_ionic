@@ -58,12 +58,12 @@ export class RegisterPage {
       await this._loadingSrv.showLoading('Registering...');
 
       const { email, password }: IUser = this.form.value;
-      const copyUser = { ...this.form.value };
+      const userCopy = { ...this.form.value };
 
       const res = await this._authSrv.register(email, password);
       const uid = res.user?.uid || '';
 
-      const user = { uid, imageUrl: this.imageUrl, ...copyUser };
+      const user = { uid, imageUrl: this.imageUrl, ...userCopy };
 
       delete user.email;
       delete user.password;
@@ -86,11 +86,12 @@ export class RegisterPage {
       await this._loadingSrv.showLoading('Updating...');
 
       const currentUserId = await this.getLoggedUserId();
-      if (currentUserId) {
+      if (currentUserId) {        
+        const user: IUserUpdate = { ...this.form.value };
 
-        const user: IUserUpdate = this.form.value;
+        const userToUpdate = { imageUrl: this.imageUrl, ...user }
   
-        await this._firestoreSrv.update('users', currentUserId, user);
+        await this._firestoreSrv.update('users', currentUserId, userToUpdate);
 
         await this._loadingSrv.hideLoading();
         await this._toastSrv.presentToast('Updated with success!');
@@ -107,9 +108,9 @@ export class RegisterPage {
     this.fileToUpload = event.target.files[0];
     this.filePath = `images/${this.fileToUpload.name}`;
     await this._storageSrv.upload(this.filePath, this.fileToUpload);
-    this.imageUrl = await this._storageSrv.getUrl(this.filePath);
     await this._loadingSrv.hideLoading();
     await this._toastSrv.presentToast('Image uploaded with success!');
+    this.imageUrl = await this._storageSrv.getUrl(this.filePath);
   }
 
   private initForm() {
