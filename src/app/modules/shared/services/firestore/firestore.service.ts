@@ -8,9 +8,13 @@ import { lastValueFrom } from 'rxjs';
 export class FirestoreService {
   constructor(private readonly _ngFirestore: AngularFirestore) {}
 
-  public async create(collection: string, data: any): Promise<void> {
+  public async create(collection: string, data: any, docId?: string): Promise<void> {
     try {
-      await this._ngFirestore.collection(collection).add(data);
+      if (docId) {
+        await this._ngFirestore.collection(collection).doc(docId).set(data);
+      } else {
+        await this._ngFirestore.collection(collection).add(data);
+      }
     } catch (error) {
       throw error;
     }
@@ -34,9 +38,9 @@ export class FirestoreService {
     }
   }
 
-  public async getDocumentById(collection: string, documentId: string): Promise<any> {
+  public async getDocumentById(collection: string, docId: string): Promise<any> {
     try {
-      const docRef = this._ngFirestore.collection(collection).doc(documentId);
+      const docRef = this._ngFirestore.collection(collection).doc(docId);
       const snapshot = await lastValueFrom(docRef.get());
       
       return { id: snapshot.id, ...(snapshot.data() || {}) };
