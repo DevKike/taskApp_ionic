@@ -9,7 +9,7 @@ const routes: Routes = [
       import('./pages/home/home.module').then((m) => m.HomePageModule),
   },
   {
-    path: 'register',
+    path: 'register/:userId',
     loadChildren: () =>
       import('./pages/register/register.module').then(
         (m) => m.RegisterPageModule
