@@ -1,5 +1,6 @@
 import { Injectable } from '@angular/core';
 import { AngularFireAuth } from '@angular/fire/compat/auth';
+import { first } from 'rxjs';
 
 @Injectable({
   providedIn: 'root',
@@ -10,7 +11,7 @@ export class AuthService {
   public async register(email: string, password: string) {
     return await this._angularFire.createUserWithEmailAndPassword(email, password);
   }
-
+  
   public async login(email: string, password: string) {
     return await this._angularFire.signInWithEmailAndPassword(email, password);
   }
@@ -20,12 +21,12 @@ export class AuthService {
   }
 
   public async isAuth() {
-    const user = await this._angularFire.currentUser;
-    return !!user;
+    const user = await this._angularFire.authState.pipe(first()).toPromise();
+    return Boolean(user?.uid); 
   }
 
   public async getAuthUserId() {
-    const user = await this._angularFire.currentUser;
-    return user?.uid;
+    const user = await this._angularFire.authState.pipe(first()).toPromise();
+    return user?.uid; 
   }
 }
