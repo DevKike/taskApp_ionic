@@ -12,20 +12,32 @@ import { ToastService } from '../../services/toast/toast.service';
 export class MenuComponent {
   @Input() headerTitle!: string;
   @Input() showMenu: boolean = true;
+  protected items!: Array<{ title: string; ref: string }>;
 
   constructor(
     private readonly _navCtrl: NavController,
     private readonly _authSrv: AuthService,
     private readonly _loadingSrv: LoadingService,
     private readonly _toastSrv: ToastService
-  ) {}
+  ) {
+    this.loadItems();
+  }
 
-  items = [
-    { title: 'Principal', ref: '/principal' },
-    { title: 'Create a task', ref: '/task' },
-    { title: 'View tasks', ref: '/tasks' },
-    { title: 'Configuration', ref: '/configuration' },
-  ];
+  protected async loadItems() {
+    await this.getItems();
+  }
+
+  protected async getItems() {
+    const userId = await this.getUserId();
+
+    this.items = [
+      { title: 'Principal', ref: '/principal' },
+      { title: 'Create a task', ref: '/task' },
+      { title: 'View tasks', ref: '/tasks' },
+      { title: 'Configuration', ref: `/register/${userId}` },
+    ];
+    return this.items;
+  }
 
   protected doNavigate(url: string) {
     this._navCtrl.navigateForward(url);
@@ -44,6 +56,14 @@ export class MenuComponent {
       await this._toastSrv.dismissToast();
     } catch (error) {
       await this._toastSrv.presentErrorToast('An error ocurred');
+    }
+  }
+
+  private async getUserId() {
+    try {
+      return await this._authSrv.getAuthUserId();
+    } catch (error) {
+      throw error;
     }
   }
 }
