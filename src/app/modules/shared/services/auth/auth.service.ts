@@ -27,6 +27,11 @@ export class AuthService {
 
   public async getAuthUserId() {
     const user = await this._angularFire.authState.pipe(first()).toPromise();
-    return user?.uid; 
+    const isAuth = await this.isAuth();
+    if (user && isAuth) {
+      return user.uid;
+    } else {
+      return 0;
+    }
   }
 }

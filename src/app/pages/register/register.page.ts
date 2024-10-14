@@ -39,7 +39,7 @@ export class RegisterPage {
     this._activatedRouter.params.subscribe(async (params) => {
       this.initForm();
       const uid = params['userId'];
-      const currentUserId = await this.getLoggedUserId();
+      const currentUserId = await this._authSrv.getAuthUserId();
 
       if (uid === currentUserId) {
         this.uid = uid;
@@ -85,7 +85,7 @@ export class RegisterPage {
     try {
       await this._loadingSrv.showLoading('Updating...');
 
-      const currentUserId = await this.getLoggedUserId();
+      const currentUserId = await this._authSrv.getAuthUserId();
       if (currentUserId) {        
         const user: IUserUpdate = { ...this.form.value };
 
@@ -147,18 +147,8 @@ export class RegisterPage {
     return null;
   }
 
-  private async getLoggedUserId() {
-    const userId = await this._authSrv.getAuthUserId();
-    const isAuth = await this._authSrv.isAuth();
-    if (userId && isAuth) {
-      return userId;
-    } else {
-      return 0;
-    }
-  }
-
   private async getUserInfo() {
-    const currentUserId = await this.getLoggedUserId();
+    const currentUserId = await this._authSrv.getAuthUserId();
     if (currentUserId) {
       const doc: IUserUpdate = await this._firestoreSrv.getDocumentById('users', currentUserId);
       doc.imageUrl ? (this.imageUrl = doc.imageUrl) : this.imageUrl;
