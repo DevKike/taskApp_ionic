@@ -52,3 +52,26 @@ ion-fab-button {
   --background-activated: var(--ion-color-primary-shade);
   --background-hover: var(--ion-color-primary-tint);
 }
+
+.empty-tasks-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 70vh;
+  opacity: 0.2;
+}
+
+.empty-tasks-img {
+  max-width: 100px;
+  margin-bottom: 20px;
+}
+
+h2 {
+  margin: 0;
+  text-align: center;
+  color: #333;
+}
+
+
+
