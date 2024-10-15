@@ -1,69 +1,91 @@
-<ion-content [fullscreen]="true">
-  <app-header title="Task master"></app-header>
-  <ion-grid>
-    <ion-row class="ion-justify-content-center ion-align-items-center">
-      <ion-col size="12" class="ion-text-center">
-        <h1>Welcome to Task master ice!</h1>
-        <p>Get organized and stay productive</p>
-        <img src="assets/icon/tasks.png" />
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+<ion-content class="ultra-modern-home">
+  <app-header title="Task Master" class="transparent-header"></app-header>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col>
-        <div class="login-content">
-          <h2>Join Task Master Today!</h2>
-          <p>
-            Organize your tasks, set priorities, and achieve your goals
-            efficiently.
-          </p>
-          <app-button class="custom-button" ref="/login" label="Sign in">
-          </app-button>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <section class="hero">
+    <ion-grid>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="12" size-md="6" class="ion-text-center ion-text-md-start">
+          <h1 class="animate__animated animate__fadeInUp">Simplify Your Life with Task Master Ice</h1>
+          <p class="animate__animated animate__fadeInUp animate__delay-1s">Organize, Prioritize, and Achieve More</p>
+          <app-button class="cta-button animate__animated animate__fadeInUp animate__delay-2s" ref="/login" label="Get Started"></app-button>
+        </ion-col>
+        <ion-col size="12" size-md="6" class="ion-text-center animate__animated animate__fadeInRight animate__delay-1s">
+          <img src="assets/icon/tasks.png" alt="Task Master" class="hero-image" />
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
 
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12" size-md="6">
-        <app-card
-          title="What it is task master?"
-          subtitle="Stay organized and get things done."
-          content="is a user-friendly app that helps you organize and manage your tasks efficiently. You can easily add, prioritize, and track tasks with due dates."
-        >
-          <img src="assets/icon/unp.jpeg" />
-        </app-card>
-      </ion-col>
-      <ion-col size="12" size-md="6">
-        <app-card
-          title="How do you utilize a task master?"
-          subtitle="important "
-          content="You have many options in the system for create tasks"
-        >
-          <img src="assets/icon/create.png" />
-        </app-card>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
-  <ion-grid>
-    <ion-row>
-      <ion-col size="12">
-        <div class="about-us-container">
-          <h2 class="about-title">About Us</h2>
-          <p class="about-description">
-            At Task Master Ice, our mission is to help you stay organized and
-            productive. We believe that effective task management leads to
-            greater success and a more balanced life. Our team is dedicated to
-            providing you with the best tools and features to manage your tasks
-            effortlessly.
-          </p>
-        </div>
-      </ion-col>
-    </ion-row>
-  </ion-grid>
+  <section class="features">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <h2 class="section-title">Why Choose Task Master?</h2>
+        </ion-col>
+      </ion-row>
+      <ion-row>
+        <ion-col size="12" size-md="4">
+          <div class="feature-card">
+            <ion-icon name="list-outline" class="feature-icon"></ion-icon>
+            <h3>Intuitive Task Management</h3>
+            <p>Easily create, organize, and prioritize your tasks with our user-friendly interface.</p>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-md="4">
+          <div class="feature-card">
+            <ion-icon name="time-outline" class="feature-icon"></ion-icon>
+            <h3>Smart Reminders</h3>
+            <p>Never miss a deadline with our intelligent reminder system tailored to your schedule.</p>
+          </div>
+        </ion-col>
+        <ion-col size="12" size-md="4">
+          <div class="feature-card">
+            <ion-icon name="stats-chart-outline" class="feature-icon"></ion-icon>
+            <h3>Progress Tracking</h3>
+            <p>Visualize your productivity and celebrate your accomplishments with detailed insights.</p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
 
+  <section class="how-it-works">
+    <ion-grid>
+      <ion-row>
+        <ion-col size="12" class="ion-text-center">
+          <h2 class="section-title">How Task Master Works</h2>
+        </ion-col>
+      </ion-row>
+      <ion-row class="ion-align-items-center">
+        <ion-col size="12" size-md="6" class="ion-text-center ion-text-md-end">
+          <img src="assets/icon/create.png" alt="Task creation" class="how-it-works-image" />
+        </ion-col>
+        <ion-col size="12" size-md="6">
+          <ol class="steps-list">
+            <li>Create tasks with ease</li>
+            <li>Set priorities and deadlines</li>
+            <li>Receive smart reminders</li>
+            <li>Track your progress</li>
+            <li>Achieve your goals efficiently</li>
+          </ol>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
+
+  <section class="about-us">
+    <ion-grid>
+      <ion-row class="ion-justify-content-center">
+        <ion-col size="12" size-md="8" size-lg="6">
+          <div class="about-us-container">
+            <h2 class="about-title">About Us</h2>
+            <p class="about-description">
+              At Task Master Ice, we're passionate about helping you achieve more. Our team of productivity enthusiasts has crafted a powerful yet simple tool to transform the way you manage tasks. We believe in the power of organization to create a more balanced and fulfilling life.
+            </p>
+          </div>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </section>
   <app-footer></app-footer>
 </ion-content>

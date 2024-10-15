@@ -1,66 +1,183 @@
-ion-col.welcome-section{
-    padding: 20px;
-    border-radius: 10px;
-    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-}
 
-h1 {
-    font-size: 2.5rem;
-    font-weight: 700;
-    color: #00796b;
-}
 
-p {
-    font-size: 1.5rem;
-    color: #004d40;
-    margin-bottom: 20px;
-}
+.ultra-modern-home {
+  --background: #f8f9fa;
 
-img {
-    height: auto;
-    margin-top: 20px;
-    border-radius: 10px;
-}
+  .transparent-header {
+    --background: transparent;
+    --border-color: transparent;
 
-:host {
-    ion-grid{
-        margin: 20px 0;
+    ion-title {
+      color: var(--ion-color-primary);
     }
-
-    .custom-card{
-        background-color: #f1f1f1;
-        border-radius: 10px;
-        padding: 20px;
-        box-shadow: 0 8px 16px rgba(0, 0, 0,1);
-    }
-
-    img {
-        width: 100%;
-        border-radius: 8px;
-        margin-top: 15px;
-    }
-}
-
-.about-us-container {
-    background-color: #ffffff;  
-    border-radius: 12px; 
-    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.1);
-    padding: 20px; 
-    margin: 20px 0;
-    text-align: center; 
-  }
-  
-  .about-title {
-    font-size: 2rem; 
-    color: #00796b; 
-    margin-bottom: 15px; 
-    font-weight: bold; 
-  }
-  
-  .about-description {
-    font-size: 1.1rem;
-    color: #555; 
-    line-height: 1.6; 
-    padding: 0 15px; 
   }
 
+  .hero {
+    background: linear-gradient(135deg, #6366F1 0%, #8B5CF6 100%);
+    padding: 80px 0;
+    color: #ffffff;
+    overflow: hidden;
+
+    h1 {
+      font-size: 3rem;
+      font-weight: 800;
+      margin-bottom: 16px;
+      line-height: 1.2;
+    }
+
+    p {
+      font-size: 1.4rem;
+      margin-bottom: 32px;
+      opacity: 0.9;
+    }
+
+    .cta-button {
+      --background: #ffffff;
+      --color: #6366F1;
+      font-weight: 600;
+      font-size: 1.1rem;
+      height: 54px;
+      --border-radius: 27px;
+      --padding-start: 40px;
+      --padding-end: 40px;
+      --box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+    }
+
+    .hero-image {
+      max-width: 90%;
+      height: auto;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.2);
+    }
+  }
+
+  .features {
+    padding: 80px 0;
+    background-color: #ffffff;
+
+    .section-title {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 60px;
+    }
+
+    .feature-card {
+      background-color: #f8f9fa;
+      border-radius: 16px;
+      padding: 40px 20px;
+      text-align: center;
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+      height: 100%;
+
+      &:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+      }
+
+      .feature-icon {
+        font-size: 48px;
+        color: #6366F1;
+        margin-bottom: 20px;
+      }
+
+      h3 {
+        font-size: 1.5rem;
+        color: #333;
+        margin-bottom: 16px;
+      }
+
+      p {
+        font-size: 1rem;
+        color: #666;
+        line-height: 1.6;
+      }
+    }
+  }
+
+  .how-it-works {
+    padding: 80px 0;
+    background-color: #f1f3f5;
+
+    .section-title {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 60px;
+    }
+
+    .how-it-works-image {
+      max-width: 80%;
+      border-radius: 16px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.1);
+    }
+
+    .steps-list {
+      list-style-type: none;
+      padding: 0;
+      counter-reset: step-counter;
+
+      li {
+        font-size: 1.2rem;
+        color: #333;
+        margin-bottom: 20px;
+        padding-left: 50px;
+        position: relative;
+
+        &:before {
+          content: counter(step-counter);
+          counter-increment: step-counter;
+          position: absolute;
+          left: 0;
+          top: 50%;
+          transform: translateY(-50%);
+          width: 36px;
+          height: 36px;
+          background-color: #6366F1;
+          color: #ffffff;
+          border-radius: 50%;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+
+  .about-us {
+    padding: 80px 0;
+    background-color: #ffffff;
+
+    .about-us-container {
+      background-color: #f8f9fa;
+      border-radius: 24px;
+      box-shadow: 0 20px 40px rgba(0, 0, 0, 0.05);
+      padding: 60px 40px;
+      text-align: center;
+    }
+
+    .about-title {
+      font-size: 2.5rem;
+      color: #333;
+      margin-bottom: 24px;
+      font-weight: bold;
+    }
+
+    .about-description {
+      font-size: 1.1rem;
+      color: #666;
+      line-height: 1.8;
+      margin-bottom: 32px;
+    }
+
+    .learn-more-button {
+      --background: #6366F1;
+      --color: #ffffff;
+      font-weight: 600;
+      font-size: 1rem;
+      height: 48px;
+      --border-radius: 24px;
+      --padding-start: 32px;
+      --padding-end: 32px;
+    }
+  }
+}

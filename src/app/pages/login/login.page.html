@@ -1,29 +1,38 @@
-<app-header title="Login"></app-header>
-<ion-content [fullscreen]="true" class="ion-padding">
+<app-header title="Login" [showHomeButton]="true"></app-header>
+<ion-content [fullscreen]="true" class="ion-padding modern-login">
   <div class="login-container">
-    <app-card>
-      <div class="divider">
-        <span>Sign in with</span>
-      </div>
+    <app-card class="login-card">
+      <h1 class="login-title">Welcome Back</h1>
+      <p class="login-subtitle">Sign in to your account</p>
+
       <form [formGroup]="form" (ngSubmit)="doLogin()">
-        <ion-row>
-          <ion-col>
-            <app-input [control]="email" label="Email" type="email" placeholder="jane@doe.com"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-input [control]="password" label="Password" type="password" placeholder="Password"></app-input>
-          </ion-col>
-        </ion-row>
-        <ion-row>
-          <ion-col>
-            <app-button [disabled]="form.invalid" label="Sign In" type="submit"></app-button>
-          </ion-col>
-        </ion-row>
+        <app-input
+          [control]="email"
+          label="Email"
+          type="email"
+          placeholder="jane@example.com"
+          class="modern-input">
+        </app-input>
+
+        <app-input
+          [control]="password"
+          label="Password"
+          type="password"
+          placeholder="••••••••"
+          class="modern-input">
+        </app-input>
+
+        <div class="button-container">
+          <app-button
+            [disabled]="form.invalid"
+            label="Sign In"
+            type="submit"
+            class="modern-button">
+          </app-button>
+        </div>
       </form>
       <div class="signup">
-        <p>New to Task Master Ice? <a [routerLink]="['/register', '0']">Create an account</a></p>
+        <p>Don't have an account? <a [routerLink]="['/register', '0']">Sign up</a></p>
       </div>
     </app-card>
   </div>
