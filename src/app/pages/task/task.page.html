@@ -1,16 +1,23 @@
-<app-header title="Task"></app-header>
-<ion-content class="ion-padding">
-  <app-card title="Create a task">
+<ion-content>
+  <app-header title="Task"></app-header>
+  <app-card title="Create Tasks">
     <form [formGroup]="taskForm" (ngSubmit)="addTask()">
       <ion-grid>
         <ion-row>
           <ion-col>
             <app-input label="Title:" [control]="title"></app-input>
+            <div *ngIf="title.hasError('required')" class="error-message">Title is required</div>
+          </ion-col>
+        </ion-row>
+        <ion-row>
+          <ion-col>
             <app-input label="Description:" [control]="description"></app-input>
+            <div *ngIf="description.hasError('required')" class="error-message">Description is required</div>
           </ion-col>
         </ion-row>
       </ion-grid>
-      <app-button label="Add Task" type="submit"></app-button>
+      <app-button  [disabled]="taskForm.invalid" label="Add Tasks" type="submit"></app-button>
     </form>
   </app-card>
 </ion-content>
+

@@ -4,5 +4,5 @@ export interface ITask {
   description: string;
   creationDate: Date;
   userId: string;
-  done?: false;
+  done: false;
 }

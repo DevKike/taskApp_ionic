@@ -75,3 +75,26 @@ h2 {
 
 
 
+/* Estilo para las tareas completadas */
+.task-done {
+  text-decoration: line-through;
+  color: gray;
+  opacity: 0.7;
+}
+
+/* Estilo para las tareas pendientes */
+.task-pending {
+  color: black;
+  font-weight: bold;
+}
+
+/* Estilos para cuando no hay tareas */
+.empty-tasks-content {
+  text-align: center;
+  padding: 2rem;
+}
+
+.empty-tasks-img {
+  width: 150px;
+  margin-bottom: 1rem;
+}

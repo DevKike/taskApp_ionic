@@ -43,4 +43,25 @@ export class TasksPage {
       this._toastSrv.presentErrorToast('Error deleting task');
     }
   }
+
+  protected async markAsDone(task: ITask) {
+    try {
+      await this._loadingSrv.showLoading('Marking as done...');
+
+      await this._firestoreSrv.update('task', task.id!, { done: true });
+
+      this._loadingSrv.hideLoading();
+      this._toastSrv.presentToast('Task marked as done');
+
+      await this.loadTasks();
+    } catch (error) {
+      this._loadingSrv.hideLoading();
+      this._toastSrv.presentErrorToast('Error marking task as done');
+      throw error;
+    }
+  }
+
+  trackTask(index: number, task: ITask) {
+    return task.id;
+  }
 }

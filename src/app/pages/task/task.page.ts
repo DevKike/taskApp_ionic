@@ -42,20 +42,25 @@ export class TaskPage {
   }
 
   protected async addTask() {
+    if (this.taskForm.invalid) {
+      return;
+    }
     try {
       this._loadingSrv.showLoading('Creating task...');
-      const task: ITask = this.taskForm.value;
-      const copyTask = { ...this.taskForm.value };
+      const task = this.taskForm.value;
+      const copyTask = {...this.taskForm.value };
       const isAuth = await this._authSrv.isAuth();
+
 
       if (isAuth) {
         const userId = await this._authSrv.getAuthUserId();
         const date = new Date();
         const formattedDate: string = date.toLocaleString();
 
-        const newTask = {
+        const newTask: ITask = {
           userId,
           creationDate: formattedDate,
+          done: false,
           ...copyTask,
         };
 
