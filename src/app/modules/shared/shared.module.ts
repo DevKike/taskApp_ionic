@@ -14,6 +14,7 @@ import { LoadingService } from './services/loading/loading.service';
 import { FooterComponent } from './components/footer/footer.component';
 import { MenuComponent } from './components/menu/menu.component';
 import { ThumbnailComponent } from './components/thumbnail/thumbnail.component';
+import { RouterModule } from '@angular/router';
 
 const MODULES = [
   CommonModule,
@@ -21,6 +22,7 @@ const MODULES = [
   IonicModule,
   ReactiveFormsModule,
   FormsModule,
+  RouterModule
 ];
 
 const COMPONENTS = [

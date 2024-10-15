@@ -1,11 +1,7 @@
-<app-header title="{{ uid? 'Configuration' : 'Register' }}"></app-header>
-
+<app-header title="{{ uid? 'Configuration' : 'Register' }}"  ></app-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-
-
   <app-card title="{{ uid ? 'Update' : '' }}" content="{{ uid ? 'Please complete the form to update' : 'Please complete the form to register' }}.">
     <ion-grid>
-
       <form [formGroup]="form" (ngSubmit)="uid ? doUpdate() : doRegister()">
         <ion-row class="ion-justify-content-center">
           <ion-col size="12" size-md="8" class="ion-text-center">
@@ -19,7 +15,6 @@
             </div>
           </ion-col>
         </ion-row>
-  
         <ion-row>
           <ion-col size="12" size-md="6">
             <app-input [control]="name" label="Name:" placeholder="Your name"></app-input>
@@ -28,7 +23,6 @@
             <app-input [control]="lastName" label="Last Name:" placeholder="Your last name"></app-input>
           </ion-col>
         </ion-row>
-  
         @if (!uid) {
           <ion-row>
             <ion-col size="12" size-md="6">
@@ -39,7 +33,6 @@
             </ion-col>
           </ion-row>
         }
-  
         <ion-row>
           <ion-col size="12" size-md="6">
             <app-input [control]="age" label="Age:" type="number" placeholder="Your age"></app-input>
@@ -48,7 +41,6 @@
             <app-input [control]="phoneNumber" label="Phone Number:" type="tel" placeholder="Your phone number"></app-input>
           </ion-col>
         </ion-row>
-  
         <ion-row class="ion-justify-content-center ion-margin-top">
           <ion-col size="12" size-md="6">
             <app-button [disabled]="form.invalid" label="{{ uid ? 'Update': 'Register' }}" type="submit" expand="block"></app-button>

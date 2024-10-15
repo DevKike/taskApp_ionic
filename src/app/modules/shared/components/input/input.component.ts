@@ -10,7 +10,7 @@ export class InputComponent {
   @Input() placeholder = '';
   @Input() type = '';
   @Input() label = '';
-  @Input() control: FormControl = new FormControl('');
+  @Input() control!: FormControl;
 
   constructor() {}
 
