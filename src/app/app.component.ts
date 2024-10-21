@@ -25,7 +25,7 @@ export class AppComponent {
 
   private async checkIdAndSetMenu(url: string) {
     const userId = await this._authService.getAuthUserId();
-    if (userId !== 0) {
+    if (userId !== '0') {
       this.showMenu =
         url === '/principal' ||
         url === '/task' ||

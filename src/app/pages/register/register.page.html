@@ -1,6 +1,6 @@
-<app-header title="{{ uid? 'Configuration' : 'Register' }}"  ></app-header>
+<app-header title="{{ uid ? 'Configuration' : 'Register' }}"></app-header>
 <ion-content [fullscreen]="true" class="ion-padding">
-  <app-card title="{{ uid ? 'Update' : '' }}" content="{{ uid ? 'Please complete the form to update' : 'Please complete the form to register' }}.">
+  <app-card title="{{ uid ? 'Update' : 'Register' }}" content="{{ uid ? 'Please complete the form to update' : 'Please complete the form to register' }}.">
     <ion-grid>
       <form [formGroup]="form" (ngSubmit)="uid ? doUpdate() : doRegister()">
         <ion-row class="ion-justify-content-center">
@@ -23,16 +23,16 @@
             <app-input [control]="lastName" label="Last Name:" placeholder="Your last name"></app-input>
           </ion-col>
         </ion-row>
-        @if (!uid) {
+        <ng-container *ngIf="!uid">
           <ion-row>
             <ion-col size="12" size-md="6">
               <app-input [control]="email" label="Email:" type="email" placeholder="jane@doe.com"></app-input>
             </ion-col>
             <ion-col size="12" size-md="6">
-              <app-input [control]="password" label="Password:" type="password" placeholder="**********"></app-input>
+              <app-input [control]="password" label="Password:" type="password" placeholder="**"></app-input>
             </ion-col>
           </ion-row>
-        }
+        </ng-container>
         <ion-row>
           <ion-col size="12" size-md="6">
             <app-input [control]="age" label="Age:" type="number" placeholder="Your age"></app-input>

@@ -38,17 +38,17 @@ export class RegisterPage {
   ) {
     this._activatedRouter.params.subscribe(async (params) => {
       this.initForm();
-      const uid = params['userId'];
+
+
       const currentUserId = await this._authSrv.getAuthUserId();
 
-      if (uid === currentUserId) {
-        this.uid = uid;
+      if (currentUserId) {
+        this.uid = currentUserId;
         this.updateControl();
         await this.setControlDefaults();
         await this.getUserInfo();
-      } else if (uid === '0') {
       } else {
-        this._navCtrl.navigateForward('/register/0');
+        this._navCtrl.navigateForward('/register/0'); 
       }
     });
   }
@@ -86,11 +86,11 @@ export class RegisterPage {
       await this._loadingSrv.showLoading('Updating...');
 
       const currentUserId = await this._authSrv.getAuthUserId();
-      if (currentUserId) {        
+      if (currentUserId) {
         const user: IUserUpdate = { ...this.form.value };
 
         const userToUpdate = { imageUrl: this.imageUrl, ...user }
-  
+
         await this._firestoreSrv.update('users', currentUserId, userToUpdate);
 
         await this._loadingSrv.hideLoading();

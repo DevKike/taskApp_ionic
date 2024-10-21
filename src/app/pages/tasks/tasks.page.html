@@ -1,7 +1,7 @@
 <app-header title="My Tasks"></app-header>
 
 <ion-content class="ion-padding">
-  <!-- Si hay tareas -->
+
   <ng-container *ngIf="tasks && tasks.length > 0; else noTasksTemplate">
     <ion-list>
       <ion-item-sliding *ngFor="let task of tasks; trackBy: trackTask">

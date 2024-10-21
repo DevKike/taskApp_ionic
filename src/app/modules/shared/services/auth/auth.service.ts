@@ -11,7 +11,7 @@ export class AuthService {
   public async register(email: string, password: string) {
     return await this._angularFire.createUserWithEmailAndPassword(email, password);
   }
-  
+
   public async login(email: string, password: string) {
     return await this._angularFire.signInWithEmailAndPassword(email, password);
   }
@@ -22,16 +22,11 @@ export class AuthService {
 
   public async isAuth() {
     const user = await this._angularFire.authState.pipe(first()).toPromise();
-    return Boolean(user?.uid); 
+    return Boolean(user?.uid);
   }
 
-  public async getAuthUserId() {
+  public async getAuthUserId(): Promise<string | null> {
     const user = await this._angularFire.authState.pipe(first()).toPromise();
-    const isAuth = await this.isAuth();
-    if (user && isAuth) {
-      return user.uid;
-    } else {
-      return 0;
-    }
+    return user ? user.uid : null;  
   }
 }
