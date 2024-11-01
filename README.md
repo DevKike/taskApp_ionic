@@ -1,7 +1,3 @@
-<h1 align="left">Hey 👋 What's up teacher?</h1>
-
-###
-
 <h2 align="left">Members</h2>
 
 ###
